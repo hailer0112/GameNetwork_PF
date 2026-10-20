@@ -37,6 +37,11 @@
     "com.unity.modules.vehicles": "1.0.0",
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "com.unity.netcode.gameobjects": "2.13.3",
+    "com.unity.transport": "6.6.0",
+    "com.unity.inputsystem": "1.20.0",
+    "com.unity.ugui": "2.6.0",
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#a77a1b4a89824fb6df293099de3060daf2a432c1"
   }
 }

@@ -1,0 +1,27 @@
+PASS paced: count=100 intervalMs=10
+[0.010s] Commands: move X Y | resend SEQ | raw TEXT | load COUNT INTERVAL_MS | status | quit
+[2.975s] LOAD count=100 intervalMs=10 sentDelta=100 elapsedMs=1542.16
+[4.447s] SELF A (99,-99) seq=102 sent=107 received=101 rejected=0 ignored=0
+[4.447s] REMOTE B (99,-99) seq=101
+[0.010s] Commands: move X Y | resend SEQ | raw TEXT | load COUNT INTERVAL_MS | status | quit
+[2.975s] LOAD count=100 intervalMs=10 sentDelta=100 elapsedMs=1542.09
+[4.447s] SELF B (99,-99) seq=101 sent=101 received=107 rejected=3 ignored=2
+[4.447s] REMOTE A (99,-99) seq=102
+PASS same-count-burst: count=100 intervalMs=0
+[0.009s] Commands: move X Y | resend SEQ | raw TEXT | load COUNT INTERVAL_MS | status | quit
+[1.433s] LOAD count=100 intervalMs=0 sentDelta=100 elapsedMs=2.25
+[3.441s] SELF A (99,-99) seq=102 sent=107 received=101 rejected=0 ignored=0
+[3.441s] REMOTE B (99,-99) seq=101
+[0.010s] Commands: move X Y | resend SEQ | raw TEXT | load COUNT INTERVAL_MS | status | quit
+[1.438s] LOAD count=100 intervalMs=0 sentDelta=100 elapsedMs=2.25
+[3.445s] SELF B (99,-99) seq=101 sent=101 received=107 rejected=3 ignored=2
+[3.445s] REMOTE A (99,-99) seq=102
+PASS burst: count=1000 intervalMs=0
+[0.014s] Commands: move X Y | resend SEQ | raw TEXT | load COUNT INTERVAL_MS | status | quit
+[1.435s] LOAD count=1000 intervalMs=0 sentDelta=1000 elapsedMs=10.94
+[3.432s] SELF A (999,-999) seq=1002 sent=1007 received=1001 rejected=0 ignored=0
+[3.432s] REMOTE B (999,-999) seq=1001
+[0.015s] Commands: move X Y | resend SEQ | raw TEXT | load COUNT INTERVAL_MS | status | quit
+[1.436s] LOAD count=1000 intervalMs=0 sentDelta=1000 elapsedMs=11.80
+[3.432s] SELF B (999,-999) seq=1001 sent=1001 received=1007 rejected=3 ignored=2
+[3.432s] REMOTE A (999,-999) seq=1002

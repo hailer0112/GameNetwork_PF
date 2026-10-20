@@ -1,0 +1,9 @@
+SMOKE_CONNECTED owner=0 score=0 mask=0
+COIN peer=1 id=-1 result=REJECT invalid ID score=0 mask=0
+COIN peer=1 id=11 result=REJECT out of range score=0 mask=0
+COIN peer=1 id=2 result=ACCEPT score=1 mask=4
+COIN peer=0 id=2 result=REJECT already collected score=1 mask=4
+COIN peer=1 id=2 result=REJECT already collected score=1 mask=4
+SMOKE_SECOND_PARTICIPANT_DUPLICATE REJECT already collected
+SMOKE_HOST_STATE score=1 mask=4 accepted=1 rejected=4 players=1
+SMOKE_HOST_DONE

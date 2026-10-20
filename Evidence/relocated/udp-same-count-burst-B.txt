@@ -1,0 +1,121 @@
+[0.006s] READY B local=127.0.0.1:19002 remote=127.0.0.1:19001
+[0.010s] Commands: move X Y | resend SEQ | raw TEXT | load COUNT INTERVAL_MS | status | quit
+[0.011s] SELF B (0,0) seq=0 sent=0 received=0 rejected=0 ignored=0
+[0.011s] REMOTE: not received
+[0.711s] SELF B (8,2) seq=1 sent=1 received=0 rejected=0 ignored=0
+[0.711s] REMOTE: not received
+[0.712s] APPLY A (3,5) seq=1
+[1.018s] APPLY A (4,6) seq=2
+[1.220s] IGNORE A seq=1 latest=2
+[1.220s] IGNORE A seq=2 latest=2
+[1.220s] REJECT malformed, unexpected endpoint, or own peer ID
+[1.220s] REJECT malformed, unexpected endpoint, or own peer ID
+[1.220s] REJECT malformed, unexpected endpoint, or own peer ID
+[1.436s] APPLY A (0,0) seq=3
+[1.436s] APPLY A (1,-1) seq=4
+[1.436s] APPLY A (2,-2) seq=5
+[1.436s] APPLY A (3,-3) seq=6
+[1.436s] APPLY A (4,-4) seq=7
+[1.436s] APPLY A (5,-5) seq=8
+[1.436s] APPLY A (6,-6) seq=9
+[1.436s] APPLY A (7,-7) seq=10
+[1.436s] APPLY A (8,-8) seq=11
+[1.436s] APPLY A (9,-9) seq=12
+[1.436s] APPLY A (10,-10) seq=13
+[1.436s] APPLY A (11,-11) seq=14
+[1.436s] APPLY A (12,-12) seq=15
+[1.436s] APPLY A (13,-13) seq=16
+[1.436s] APPLY A (14,-14) seq=17
+[1.436s] APPLY A (15,-15) seq=18
+[1.436s] APPLY A (16,-16) seq=19
+[1.436s] APPLY A (17,-17) seq=20
+[1.436s] APPLY A (18,-18) seq=21
+[1.436s] APPLY A (19,-19) seq=22
+[1.436s] APPLY A (20,-20) seq=23
+[1.437s] APPLY A (21,-21) seq=24
+[1.437s] APPLY A (22,-22) seq=25
+[1.437s] APPLY A (23,-23) seq=26
+[1.437s] APPLY A (24,-24) seq=27
+[1.437s] APPLY A (25,-25) seq=28
+[1.437s] APPLY A (26,-26) seq=29
+[1.437s] APPLY A (27,-27) seq=30
+[1.437s] APPLY A (28,-28) seq=31
+[1.437s] APPLY A (29,-29) seq=32
+[1.437s] APPLY A (30,-30) seq=33
+[1.437s] APPLY A (31,-31) seq=34
+[1.437s] APPLY A (32,-32) seq=35
+[1.437s] APPLY A (33,-33) seq=36
+[1.437s] APPLY A (34,-34) seq=37
+[1.437s] APPLY A (35,-35) seq=38
+[1.437s] APPLY A (36,-36) seq=39
+[1.437s] APPLY A (37,-37) seq=40
+[1.437s] APPLY A (38,-38) seq=41
+[1.437s] APPLY A (39,-39) seq=42
+[1.437s] APPLY A (40,-40) seq=43
+[1.437s] APPLY A (41,-41) seq=44
+[1.437s] APPLY A (42,-42) seq=45
+[1.437s] APPLY A (43,-43) seq=46
+[1.437s] APPLY A (44,-44) seq=47
+[1.437s] APPLY A (45,-45) seq=48
+[1.437s] APPLY A (46,-46) seq=49
+[1.437s] APPLY A (47,-47) seq=50
+[1.437s] APPLY A (48,-48) seq=51
+[1.437s] APPLY A (49,-49) seq=52
+[1.437s] APPLY A (50,-50) seq=53
+[1.437s] APPLY A (51,-51) seq=54
+[1.437s] APPLY A (52,-52) seq=55
+[1.437s] APPLY A (53,-53) seq=56
+[1.437s] APPLY A (54,-54) seq=57
+[1.437s] APPLY A (55,-55) seq=58
+[1.437s] APPLY A (56,-56) seq=59
+[1.437s] APPLY A (57,-57) seq=60
+[1.437s] APPLY A (58,-58) seq=61
+[1.437s] APPLY A (59,-59) seq=62
+[1.437s] APPLY A (60,-60) seq=63
+[1.437s] APPLY A (61,-61) seq=64
+[1.437s] APPLY A (62,-62) seq=65
+[1.437s] APPLY A (63,-63) seq=66
+[1.437s] APPLY A (64,-64) seq=67
+[1.437s] APPLY A (65,-65) seq=68
+[1.437s] APPLY A (66,-66) seq=69
+[1.437s] APPLY A (67,-67) seq=70
+[1.437s] APPLY A (68,-68) seq=71
+[1.437s] APPLY A (69,-69) seq=72
+[1.437s] APPLY A (70,-70) seq=73
+[1.437s] APPLY A (71,-71) seq=74
+[1.437s] APPLY A (72,-72) seq=75
+[1.437s] APPLY A (73,-73) seq=76
+[1.437s] APPLY A (74,-74) seq=77
+[1.437s] APPLY A (75,-75) seq=78
+[1.437s] APPLY A (76,-76) seq=79
+[1.437s] APPLY A (77,-77) seq=80
+[1.437s] APPLY A (78,-78) seq=81
+[1.437s] APPLY A (79,-79) seq=82
+[1.437s] APPLY A (80,-80) seq=83
+[1.437s] APPLY A (81,-81) seq=84
+[1.437s] APPLY A (82,-82) seq=85
+[1.437s] APPLY A (83,-83) seq=86
+[1.437s] APPLY A (84,-84) seq=87
+[1.437s] APPLY A (85,-85) seq=88
+[1.438s] APPLY A (86,-86) seq=89
+[1.438s] APPLY A (87,-87) seq=90
+[1.438s] APPLY A (88,-88) seq=91
+[1.438s] APPLY A (89,-89) seq=92
+[1.438s] APPLY A (90,-90) seq=93
+[1.438s] APPLY A (91,-91) seq=94
+[1.438s] APPLY A (92,-92) seq=95
+[1.438s] APPLY A (93,-93) seq=96
+[1.438s] APPLY A (94,-94) seq=97
+[1.438s] APPLY A (95,-95) seq=98
+[1.438s] APPLY A (96,-96) seq=99
+[1.438s] APPLY A (97,-97) seq=100
+[1.438s] APPLY A (98,-98) seq=101
+[1.438s] APPLY A (99,-99) seq=102
+[1.438s] LOAD count=100 intervalMs=0 sentDelta=100 elapsedMs=2.25
+[1.438s] SELF B (99,-99) seq=101 sent=101 received=107 rejected=3 ignored=2
+[1.438s] REMOTE A (99,-99) seq=102
+[3.441s] SELF B (99,-99) seq=101 sent=101 received=107 rejected=3 ignored=2
+[3.441s] REMOTE A (99,-99) seq=102
+[3.445s] SELF B (99,-99) seq=101 sent=101 received=107 rejected=3 ignored=2
+[3.445s] REMOTE A (99,-99) seq=102
+

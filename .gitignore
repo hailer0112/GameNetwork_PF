@@ -73,3 +73,22 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Submission projects and evidence
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Ll]ogs/
+**/[Oo]bj/
+**/bin/
+**/[Uu]ser[Ss]ettings/
+**/Builds/
+**/PerformanceTestRun*
+*.csproj
+!UdpPeer/UdpPeer.csproj
+Evidence/*.txt
+!Evidence/udp-*.txt
+!Evidence/coin-*.txt
+!Evidence/unity-build-summary.txt
+!Evidence/unity-relocated-build-summary.txt
+*.slnx
+
