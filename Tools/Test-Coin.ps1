@@ -1,9 +1,9 @@
 param([string]$ProjectRoot = (Split-Path $PSScriptRoot -Parent))
 $ErrorActionPreference = 'Stop'
-$exe = Join-Path $ProjectRoot 'CoinGame/Builds/CoinLink.exe'
+$exe = Join-Path $ProjectRoot 'Builds/CoinLink.exe'
 $evidence = Join-Path $ProjectRoot 'Evidence'
 New-Item -ItemType Directory -Path $evidence -Force | Out-Null
-$rawLogs = Join-Path $ProjectRoot 'CoinGame/Logs'
+$rawLogs = Join-Path $ProjectRoot 'Logs'
 New-Item -ItemType Directory -Path $rawLogs -Force | Out-Null
 $hostLog = Join-Path $rawLogs 'smoke-host.log'
 $clientLog = Join-Path $rawLogs 'smoke-client.log'

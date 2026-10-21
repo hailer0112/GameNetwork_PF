@@ -59,6 +59,12 @@ public static class CoinGameBuilder
         var material = new Material(Shader.Find("Standard")); material.color = color;
         AssetDatabase.CreateAsset(material, "Assets/Prefabs/" + name + ".mat"); target.GetComponent<Renderer>().sharedMaterial = material;
     }
+    [MenuItem("Coin Link/Build and Run Windows")]
+    public static void BuildAndRunWindows()
+    {
+        BuildBatch();
+        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(Path.GetFullPath("Builds/CoinLink.exe")) { UseShellExecute = true });
+    }
     public static void BuildBatch()
     {
         if (!File.Exists(ScenePath)) CreateArena();
