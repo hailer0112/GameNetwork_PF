@@ -1,109 +1,128 @@
-# Coin Link — 게임 네트워크 과제
+# 실행 안내
 
-하나의 제출 묶음에 Unity 코인 게임과 독립적인 UDP 콘솔 프로그램이 있습니다.
-강사님 요구사항: https://github.com/Unity-Program-Lecture/csharp_basic/blob/main/Documents/Curriculum/10.GameNetwork/PROJECT_SUBMISSION_GUIDE.md
+## 1. 실행 환경
 
+| 항목 | 버전 |
+|---|---|
+| Unity Editor | 6000.6.0f1 |
+| Netcode for GameObjects | 2.13.3 |
+| Unity Transport | 6.6.0 |
+| Input System | 1.20.0 |
+| uGUI | 2.6.0 |
+| UniTask | 커밋 `a77a1b4a89824fb6df293099de3060daf2a432c1` |
+| .NET SDK | 기존 빌드 확인 환경: 10.0.400 |
+| .NET 대상 프레임워크 / 실행 Runtime | net8.0 / 기존 실행 확인 환경: 8.0.28 |
 
-## 저장소 구성
+- Windows 기준입니다. Unity에서 Windows 빌드를 지원하는 모듈이 필요합니다.
+- Unity 패키지는 `Packages/manifest.json`과 `Packages/packages-lock.json`을 통해 복원됩니다.
+- UniTask의 Git 패키지를 복원하려면 Git 클라이언트와 네트워크 연결이 필요합니다.
+- UDP 프로그램은 .NET SDK와 .NET 8 Runtime을 준비합니다.
 
-이 저장소 자체가 제출 폴더입니다. GitHub에서 내려받은 뒤 아래 구조를 기준으로 실행하세요.
+## 2. 시작 위치
 
-```text
-GameNetwork_PF/
-  README.md
-  DESIGN.md
-  TEST_REPORT.md
-  Assets/         게임 씬·스크립트·프리팹
-  Packages/       Unity 패키지 설정
-  ProjectSettings/ Unity 프로젝트 설정
-  Builds/         로컬에서 생성하는 실행 파일
-  UdpPeer/        .NET 콘솔 프로젝트
-  Evidence/       시험 기록
-  Tools/          재현용 자동 시험 스크립트
-```
+- Unity Hub에 추가할 폴더: **클론한 `GameNetwork_PF` 폴더 자체**.
+- 시작 씬: Unity 아래쪽 Project 창에서 **Assets → Scenes → CoinArena** 더블클릭.
+- UDP 콘솔 프로젝트: `UdpPeer/UdpPeer.csproj`.
+- 아래 터미널 명령은 모두 `GameNetwork_PF` 폴더에서 실행합니다.
 
-Unity의 Library/Temp/Logs/Builds와 .NET의 bin/obj는 GitHub 제출에서 제외합니다. 클론한 GameNetwork_PF 폴더 자체를 Unity Hub에서 열면 됩니다. CoinGame을 별도로 클론하거나 하위 프로젝트를 찾을 필요가 없습니다. 실행 파일은 소스와 별개이며 최초 한 번 빌드해야 합니다.
+## 3. Unity 빌드 및 Host·Client 실행 순서
 
-## 기존 클론을 업데이트할 때
+1. Unity Hub에서 `GameNetwork_PF`를 추가하고 Unity 6000.6.0f1로 엽니다.
+2. 패키지 복원과 컴파일이 끝나면 **Assets → Scenes → CoinArena**를 더블클릭합니다.
+3. 재생 중이라면 위쪽 **▶**를 눌러 재생을 끕니다.
+4. Unity 맨 위 메뉴에서 **Coin Link → Build and Run Windows**를 누릅니다.
+5. 빌드가 완료되면 별도 게임 창이 열립니다. 아직 Client를 누르지 않습니다.
+6. Unity로 돌아와 **▶**를 누르고 Game 화면의 **Host**를 클릭합니다.
+7. 별도로 열린 게임 창에서 **Client**를 클릭합니다.
 
-Unity를 닫고 GitHub Desktop에서 Pull origin을 실행한 뒤 Unity Hub에 GameNetwork_PF 폴더 자체를 추가하세요. 기존 CoinGame/Builds에 만든 실행 파일은 자동 이동하지 않습니다. 필요하면 해당 Builds 폴더 전체를 저장소 최상위로 복사하세요. 실행 파일만 따로 옮기지 말고 데이터 폴더와 DLL도 함께 유지하세요. 기존 파일과 충돌해 Pull이 멈추면 강제로 덮어쓰지 말고 GitHub Desktop에 표시되는 경로를 확인하세요.
+실행 파일은 `Builds/CoinLink.exe`에 생성됩니다. 다음 실행부터는 이 파일을 더블클릭하면 됩니다. 다른 위치로 옮길 때는 실행 파일뿐 아니라 **Builds 폴더 전체**를 함께 옮깁니다.
 
-## 개발 환경
+수동 빌드: **File → Build Profiles → Windows**에서 Scene List의 `Scenes/CoinArena`를 체크하고 **Build**를 누릅니다. 결과는 `Builds` 폴더에 저장합니다. 이 경로로 빌드한 실행 파일 이름은 설정에 따라 다를 수 있습니다.
 
-- 실제 개발 Editor: Unity 6000.6.0f1 (사용자 PC에 설치된 버전). 강사님 검증 프로젝트의 6000.6.5f1과 다릅니다.
-- NGO 2.13.3 / Unity Transport 6.6.0 / Input System 1.20.0 / uGUI 2.6.0.
-- 패키지는 Packages의 manifest.json 및 packages-lock.json으로 복원합니다.
-- 렌더링: 기본 렌더 파이프라인. 추가 그래픽 리소스는 없습니다.
-- UDP: net8.0. 개발 PC의 .NET SDK 10.0.400으로 빌드하고 .NET Runtime 8.0.28로 실행.
-- UniTask: 공식 커밋 a77a1b4a89824fb6df293099de3060daf2a432c1로 고정했습니다. 2.5.10 태그는 현재 Unity의 Editor TreeView API에서 컴파일 오류가 있어 호환 수정이 있는 공식 소스로 변경했습니다. 이는 수업 지정 버전으로 확인된 값은 아닙니다. 연결 완료/실패를 취소 가능한 비동기 대기로 처리하고 시간 제한은 Update에서 관리합니다. Git 클라이언트가 있어야 UPM Git 패키지를 복원할 수 있습니다.
+## 4. 접속 주소·포트 설정
 
-## Unity 실행
+| 대상 | 기본 설정 | 변경 위치 |
+|---|---|---|
+| Unity Host·Client | `127.0.0.1:7777` | 게임 화면 위쪽 주소·포트 입력칸. 연결 전에 변경하며 양쪽 포트를 동일하게 설정 |
+| UDP 피어 A | 자신 `127.0.0.1:9001`, 상대 `127.0.0.1:9002` | 실행 명령의 인자 |
+| UDP 피어 B | 자신 `127.0.0.1:9002`, 상대 `127.0.0.1:9001` | 실행 명령의 인자 |
 
-1. GameNetwork_PF를 클론하고 Unity Hub에서 **클론한 GameNetwork_PF 폴더 자체**를 프로젝트로 추가합니다.
-2. 6000.6.0f1로 열고 패키지 복원/컴파일 완료를 기다립니다.
-3. Assets/Scenes/CoinArena.unity를 엽니다. 씬이 없다면 Coin Link > Create Arena로 생성합니다. 생성 도구는 기존 씬을 덮어쓰지 않습니다.
-4. Play를 누르고 Host를 클릭합니다. 기본 주소 127.0.0.1, 포트 7777.
-5. Unity 상단 **Coin Link > Build and Run Windows**를 누르면 Builds/CoinLink.exe를 만들고 실행합니다. 다음부터는 Builds/CoinLink.exe를 직접 실행해도 됩니다.
-6. 실행 파일을 열고 Client를 클릭합니다. Host 화면에 players 2가 표시되어야 합니다.
+Unity 입력칸 기본값과 Host 수신 주소는 `Assets/Scripts/CoinMenu.cs`에서 설정합니다. 현재 Host 수신 주소는 코드에서 `127.0.0.1`로 고정되어 있어 **같은 컴퓨터의 두 화면으로 시험**합니다. 입력칸의 주소만 바꿔도 다른 컴퓨터 접속이 가능해지는 것은 아닙니다.
 
-조작: WASD/방향키 이동, E 또는 Collect 버튼으로 가장 가까운 남은 코인 획득 요청.
-본인 캐릭터는 청록색, 상대는 분홍색입니다. 화면의 Score는 공동 점수이며 Left는 남은 코인 수입니다.
-주소/포트는 연결 전 입력칸에서 변경합니다. Host 수신은 로컬 127.0.0.1로 제한합니다.
-연결 중 시작 버튼은 비활성화되고, 실패/10초 시간 제한 후 다시 시도할 수 있습니다.
+## 5. 게임 조작 및 정상 실행 확인
 
-시험 버튼:
-- Invalid ID: -1을 요청하여 서버 거절을 확인합니다.
-- Far coin #11: 시작 위치에서 먼 코인 11을 요청합니다. 먼저 그 코인을 획득하거나 접근했다면 거리 시험 조건이 달라집니다.
-- Repeat last: 직전 요청을 반복합니다. 정상 획득 후 사용하면 이미 획득한 코인 거절을 확인합니다.
-- 두 참여자가 같은 코인 가까이에 선 뒤 E를 누르면 공동 점수는 한 번만 증가해야 합니다.
+게임 화면을 클릭해 키보드 입력을 활성화합니다.
 
-Client에서 Disconnect 후 Client를 다시 누르면 현재 점수/남은 코인이 동기화됩니다.
-Host가 종료되면 세션이 끝나고, 새 Host 세션은 초기화됩니다. 개인 점수/DB/계정 저장은 없습니다.
+| 조작 | 기능 / 확인할 결과 |
+|---|---|
+| WASD 또는 방향키 | 본인 캐릭터 이동 |
+| E 또는 Collect | 가장 가까운 남은 코인 획득 요청 |
+| Invalid ID | 잘못된 코인 ID 요청. `REJECT invalid ID` 확인 |
+| Far coin #11 | 먼 코인 요청. 코인 11이 멀리 있고 미획득일 때 `REJECT out of range` 확인 |
+| Repeat last | 직전 요청 반복. 정상 획득 직후 누르면 `already collected` 거절 확인 |
+| Disconnect | 연결 종료. Client에서 다시 Client를 눌러 재접속 |
 
-자동 빌드: Unity 실행 파일에 -batchmode -nographics -quit -projectPath <GameNetwork_PF 경로> -executeMethod CoinGameBuilder.BuildBatch -logFile <로그 경로> 인자를 전달합니다.
-빌드 후 PowerShell에서 `./Tools/Test-Coin.ps1`을 실행하면 두 별도 Player의 연결/서버 판정/이동/재접속을 시험합니다.
-이 자동 시험은 UI 마우스 클릭 검증과 구분합니다.
+정상 실행 기준:
 
-## UDP 실행
+- 두 화면에 `Connected`가 표시되고 Host 화면에 **players 2**가 표시됩니다.
+- 본인 캐릭터는 청록색, 상대는 분홍색이며 상대의 이동이 다른 화면에도 반영됩니다.
+- 코인을 획득하면 양쪽의 **Score**가 함께 증가하고 **Left**가 함께 감소합니다.
+- 같은 코인에 대한 반복 요청은 점수가 추가되지 않습니다.
+- Host를 유지한 채 Client가 재접속하면 현재 점수와 남은 코인이 표시됩니다.
 
-터미널을 두 개 열고 이 문서가 있는 폴더에서 실행합니다.
+## 6. UDP 피어 빌드 및 실행 순서
 
-```text
+터미널 두 개를 열고, 양쪽 모두 `GameNetwork_PF` 폴더로 이동합니다.
+
+먼저 터미널 A에서 빌드한 뒤 피어 A를 실행합니다.
+
+```powershell
 dotnet build UdpPeer/UdpPeer.csproj
 dotnet run --project UdpPeer/UdpPeer.csproj --no-build -- A 127.0.0.1 9001 127.0.0.1 9002
 ```
 
-다른 터미널:
+다음으로 터미널 B에서 피어 B를 실행합니다.
 
-```text
+```powershell
 dotnet run --project UdpPeer/UdpPeer.csproj --no-build -- B 127.0.0.1 9002 127.0.0.1 9001
 ```
 
-명령:
-- A에서 `move 3 5`, B에서 `move 8 2`: 상대 위치가 교차 표시됩니다.
-- A에서 `move 4 6` 후 `resend 1`, `resend 2`: B는 IGNORE를 표시하고 최신 위치를 유지합니다.
-- `raw nonsense`, `raw POS1|A|bad|x|y`: 잘못된 메시지 거절.
-- `raw `: 공백 뒤 아무 내용 없이 입력하면 빈 UDP 메시지를 보냅니다.
-- `load 100 10`, `load 100 0`, `load 1000 0`: 개수/전송 간격(ms) 조절.
-- `status`: 자기/상대 위치와 송수신 카운터. `quit`: 정상 종료.
+명령 인자 순서는 `피어ID 자신IP 자신포트 상대IP 상대포트`입니다. 포트를 변경하면 양쪽의 자신·상대 포트를 서로 맞춥니다. 두 피어가 모두 READY를 출력한 뒤 다음 조작을 진행합니다.
 
-전송량 자동 시험: PowerShell에서 `./Tools/Test-Udp.ps1`.
-9001/9002는 직접 실행용, 19001/19002는 자동 시험용입니다. 프로그램 시작 인자로 변경할 수 있습니다.
-순서 번호는 좌표가 바뀌어 새 위치 메시지를 만들 때 증가합니다. resend는 기존 번호/좌표를 그대로 사용합니다.
-프로세스 재시작 시 번호 복구는 지원하지 않으므로 시험 재시작 때 두 피어를 함께 재시작합니다.
+| 입력 위치 / 명령 | 정상 출력 또는 기능 |
+|---|---|
+| A: `move 3 5` | B에 `APPLY A (3,5) seq=1` 표시 |
+| B: `move 8 2` | A에 `APPLY B (8,2) seq=1` 표시 |
+| A: `move 4 6` 후 `resend 1`, `resend 2` | B에 `IGNORE` 표시, A의 최신 위치 (4,6) 유지 |
+| `raw nonsense` | 상대에 `REJECT` 표시 |
+| `raw POS1\|A\|bad\|x\|y` | 상대에 잘못된 메시지 거절 표시 |
+| `raw ` (뒤에 공백 하나 포함) | 빈 UDP 메시지 송신, 상대에서 거절 |
+| `load 100 10` | 100개를 10ms 간격으로 송신 |
+| `load 100 0` / `load 1000 0` | 100개 / 1000개를 대기 간격 없이 송신 |
+| `status` | SELF·REMOTE 위치와 송수신·거절·무시 횟수 출력 |
+| `quit` | 종료 |
 
-## 현재 상태/제한
+시작 시 `READY A` / `READY B`가 표시됩니다. 최초 `REMOTE: not received`는 아직 상대 메시지를 받지 않았다는 뜻입니다. 이동 메시지를 보낸 뒤 상대의 APPLY와 status의 REMOTE 좌표를 확인합니다.
 
-실제 검증 결과와 미검증 항목은 TEST_REPORT.md를 확인하세요.
-로컬 2명 학습용이며 인터넷 매칭, 암호화, 인증, 계정, 데이터 영속 저장은 구현하지 않았습니다.
-UI는 영문이며 그래픽 대신 통신/서버 판정 확인을 우선합니다.
-저장소 공개 여부와 제출 기한은 별도 공지를 확인해야 합니다.
+자동 시험은 PowerShell 7에서 실행합니다.
 
-## 제출 전
+```powershell
+pwsh -File ./Tools/Test-Udp.ps1
+pwsh -File ./Tools/Test-Coin.ps1
+```
 
-저장소 루트의 Assets/.meta, Packages, ProjectSettings와 UdpPeer의 .csproj/소스, 본 문서, DESIGN.md, TEST_REPORT.md, Evidence를 포함하세요.
-Library/Temp/Logs/UserSettings/Builds, UdpPeer/bin/obj는 제외합니다.
-이 폴더 전체를 다른 위치로 복사하여 안내서대로 재실행하세요. GitHub 제출 시 평가자가 접근할 수 있는 공개 저장소가 필요합니다.
+게임 자동 시험은 먼저 `Builds/CoinLink.exe`를 빌드해야 합니다. UDP 자동 시험은 19001·19002 포트를 사용합니다.
 
+## 7. 알려진 오류·미완성 기능·환경 제한
 
-
+- **Builds 폴더가 없음:** 실행 파일은 Git에서 제외되어 있습니다. 최초 클론 후 위 빌드 절차를 수행합니다.
+- **Assets가 비어 있음:** Unity Hub에서 연 폴더가 `Assets`, `Packages`, `ProjectSettings`를 바로 포함하는 `GameNetwork_PF`인지 확인합니다.
+- **Coin Link 메뉴가 없음:** 패키지 복원·컴파일 완료 여부와 Console의 컴파일 오류를 확인합니다.
+- **UniTask 호환성:** 기존 시험에서 2.5.10의 Editor TreeView 컴파일 오류가 있어 위 커밋으로 고정했습니다.
+- **Unity 버전:** 프로젝트는 6000.6.0f1 기준입니다. 수업 검증 환경의 6000.6.5f1과 다르며, 동일한 실행 결과를 보장하지 않습니다.
+- **접속 실패:** Host를 먼저 시작하고 양쪽 주소·포트를 확인합니다. 연결 시도는 약 10초 후 시간 초과되며 다시 시도할 수 있습니다.
+- **UDP Socket error:** 같은 포트를 사용하는 다른 프로그램이나 남아 있는 피어 프로세스가 있는지 확인합니다.
+- **UDP 피어 재시작:** 순서 번호 복구를 지원하지 않으므로 시험을 다시 시작할 때 두 피어를 모두 종료하고 재실행합니다.
+- **게임 범위:** 같은 컴퓨터에서 2명 연결을 시험하는 용도입니다. 인터넷 매칭·인증·계정·암호화·DB 저장은 구현하지 않았습니다.
+- **세션 유지:** Host 종료 시 세션이 끝납니다. 새 Host 세션에서는 점수와 코인이 초기화됩니다.
+- **추가 확인 필요:** 다양한 창 크기의 UI 배치와 정확히 동시인 코인 획득 경쟁은 추가 수동 확인 대상입니다.
